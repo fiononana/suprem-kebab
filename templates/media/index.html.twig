@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ medium.id }}</td>
                 <td>{{ medium.Nom }}</td>
-                <td>{{ medium.photo }}</td>
+                <td><img src="{{ asset('photo/'~ medium.photo)}}" alt="" width="300" height="200"></td>
                 <td>{{ medium.description }}</td>
                 <td>
                     <a href="{{ path('media_show', {'id': medium.id}) }}">show</a>

@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/media')]
 class MediaController extends AbstractController
 {
-    #[Route('/', name: 'media_index', methods: ['GET'])]
+    #[Route('/index', name: 'media_index', methods: ['GET'])]
     public function index(MediaRepository $mediaRepository): Response
     {
         return $this->render('media/index.html.twig', [
@@ -29,7 +29,23 @@ class MediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $postData = $request->request->all();
             $entityManager = $this->getDoctrine()->getManager();
+            $file = $form->get('photo')->getData();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $target_dir = __DIR__ . "../../photo" .$this->getParameter('photo_media');
+
+            $target_file = $target_dir ."/". basename($fileName);
+            try {
+                $file->move(
+                    $this->getParameter('photo_media'),
+                    $target_file
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+            $medium->setPhoto($fileName);
             $entityManager->persist($medium);
             $entityManager->flush();
 
