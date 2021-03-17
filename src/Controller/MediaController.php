@@ -73,6 +73,21 @@ class MediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $old_image = $request->request->get('old_image');
+            $postData = $request->request->all();
+            if (is_null($medium->getPhoto())) {
+                $medium->setPhoto($old_image);
+            } else {
+                $file = $form->get('image')->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $target_dir = __DIR__ . "../../photo" .$this->getParameter('photo_media');
+
+                $target_file = $target_dir ."/". basename($fileName);
+                move_uploaded_file($_FILES["media"]["tmp_name"]["image"], $target_file);
+                $medium->setImage($fileName);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('media_index');

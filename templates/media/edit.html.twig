@@ -5,7 +5,20 @@
 {% block body %}
     <h1>Edit Media</h1>
 
-    {{ include('media/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="row">
+        <div class="col-12">
+            {{ form_label(form.Nom) }}
+            {{ form_widget(form.Nom) }}
+        </div>
+        <div class="col-12">
+            {{ form_label(form.photo) }}
+            {{ form_widget(form.photo) }}
+        </div>
+        <div class="col-12">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+    </div>
 
     <a href="{{ path('media_index') }}">back to list</a>
 

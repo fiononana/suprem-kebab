@@ -2,30 +2,57 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Sûpreme Kebab{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
 
-
-        <!-- bootstrap css -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-reboot.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-        <!-- style css -->
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-
-
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+
+            <!-- bootstrap css -->
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-grid.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-reboot.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+            <!-- style css -->
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% endblock %}
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+            <script
+                    src="https://code.jquery.com/jquery-3.5.1.min.js"
+                    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+                    crossorigin="anonymous">
+            </script>
+            <script src="/js/script.js"></script>
         {% endblock %}
     </head>
     <body>
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
+        {% if app.user %}
+            <a class="btn btn-outline-info" href="{{ path('membre') }}">Page membre</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-outline-warning" href="{{ path('admin') }}">Page admin</a>
+            {% endif %}
+            <div>
+                Bonjour {{ app.user.email }} <a class="btn btn-sm btn-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% else %}
+            <div>
+                <a class="btn btn-sm btn-primary" href="{{ path('user_new') }}">S'inscrire</a>
+                <a class="btn btn-sm btn-success" href="{{ path('app_login') }}">Se connecter</a>
+            </div>
+        {% endif %}
+    </nav>
+    <div class="container">
+        {% if message is defined %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endif %}
+    </div>
+
         {% block body %}{% endblock %}
     </body>
 </html>

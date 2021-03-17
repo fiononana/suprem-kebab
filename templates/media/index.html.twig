@@ -3,37 +3,26 @@
 {% block title %}Media index{% endblock %}
 
 {% block body %}
-    <h1>Media index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Photo</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="panel-heading mb-2">
+        <div>
+            <h1 >Media</h1>
+            <div class="text-left">
+                <a class="btn btn-primary" href="{{ path('media_new')}}">
+                <i class="fas fa-plus">
+                </i>
+                    Nouveau</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         {% for medium in media %}
-            <tr>
-                <td>{{ medium.id }}</td>
-                <td>{{ medium.Nom }}</td>
-                <td><img src="{{ asset('photo/'~ medium.photo)}}" alt="" width="300" height="200"></td>
-                <td>{{ medium.description }}</td>
-                <td>
-                    <a href="{{ path('media_show', {'id': medium.id}) }}">show</a>
-                    <a href="{{ path('media_edit', {'id': medium.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="col-sm-4">
+                <ul class="list-group">
+                    <li><img src="{{ asset('photo/'~ medium.photo)}}" alt="" width="300" height="200" onMouseOut="javascript:this.style.background='#ffffff'" onMouseOver="javascript:this.style.background='#008080'" onclick="location.href='{{path('media_edit', { 'id': medium.id })}}'"></li>
+                    <li class="list-group-item">{{ medium.description }}</li>
+                </ul>
 
-    <a href="{{ path('media_new') }}">Create new</a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
