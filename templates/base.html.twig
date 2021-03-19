@@ -44,14 +44,15 @@
                 <a class="btn btn-sm btn-success" href="{{ path('app_login') }}">Se connecter</a>
             </div>
         {% endif %}
+
+        <div class="container">
+            {% if message is defined %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </div>
     </nav>
-    <div class="container">
-        {% if message is defined %}
-            <div class="alert alert-danger">
-                {{ message }}
-            </div>
-        {% endif %}
-    </div>
 
         {% block body %}{% endblock %}
     </body>

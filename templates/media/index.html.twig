@@ -1,19 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Media index{% endblock %}
-
 {% block body %}
-    <div class="panel-heading mb-2">
-        <div>
-            <h1 >Media</h1>
-            <div class="text-left">
-                <a class="btn btn-primary" href="{{ path('media_new')}}">
-                <i class="fas fa-plus">
-                </i>
-                    Nouveau</a>
+        <div class="panel panel-bd p-3 ">
+            <div class="panel-heading">
+                <h1>Nouveau Media</h1>7
             </div>
-        </div>
-    </div>
+                    <div class="text-left">
+                        <a class="btn btn-primary" href="{{ path('media_new')}}">
+                        <i class="fas fa-plus">
+                        </i>
+                            Nouveau</a>
+                    </div>
+            </div>
     <div class="row">
         {% for medium in media %}
             <div class="col-sm-4">
