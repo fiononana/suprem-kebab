@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    <!-- bootstrap css -->
+
+    {% block stylesheets %}
+        {#{{ encore_entry_link_tags('app') }}#}
+        <link rel="stylesheet" href="{{ asset('daraz/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('daraz/css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('daraz/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('daraz/css/style.css') }}">
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZXJBVDf7R4JqmSpopVPoduIGWx1IwpBM"></script>
+    {% endblock %}
+
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+        <script type="text/javascript" src="{{ asset ('daraz/js/jquery-1.11.2.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset ('daraz/js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('daraz/js/main.js')}}"></script>
+
+
+    {% endblock %}
+</head>
+<body>
+{% include 'baseFront/header.html.twig' %}
+{% block body %}{% endblock %}
+{% include 'baseFront/footer.html.twig' %}
+</body>
+</html>
