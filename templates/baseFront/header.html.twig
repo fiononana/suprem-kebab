@@ -1,0 +1,35 @@
+
+<div class="container-fluid">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#header">
+                    <img src="{{ asset('daraz/images/logo.png') }}" alt="logo" width="80px" height="65px">
+                    <span style="font-family: 'Franklin Gothic Demi Cond'; color:#fd7e14; size: letter"> Suprême Kebab</span>
+                </a>
+            </div><!-- /.navbar-header -->
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('vitrine') }}">Acceuil</a></li>
+                    <li><a href="{{ path('galerie') }}">Galerie</a></li>
+                    <li><a href="{{ path('specialite') }}">Specialité</a></li>
+                    <li><a href="{{ path('menu') }}">Menu & promo</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div> <!-- /.navbar-collapse -->
+        </div> <!-- /.container -->
+    </nav>
+
+    <div class="bkg">
+        <img src="{{ asset('daraz/images/header.jpg') }}" alt="" style="max-width:100%">
+    </div>
+    <!-- HEADER END -->
+</div>
