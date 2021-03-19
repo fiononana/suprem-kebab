@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit Adresse</h1>
+    {% for adresse in adresse %}
+        {% if adresse|length < 1 %}
+            <a href="{{ path('adresse_new') }}">Create new</a>
+        {% else %}
+            <a href="{{ path('adresse_edit', {'id': adresse.id}) }}">edit</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
